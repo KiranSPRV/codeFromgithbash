@@ -1,0 +1,100 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<script src="~/Scripts/angular.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+<script src="~/Scripts/UserScripts/UserController.js"></script>
+<style>
+    .btn-space {
+        margin-left: -5%;
+        background-color: cornflowerblue;
+        font-size: large;
+    }
+</style>
+<div ng-app="myApp">
+    <div ng-controller="myCtrl" class="divList">
+        <div class="form-horizontal" role="form">
+            <div class="container">
+                <div class="row">
+                    <h2>
+                        <span id="spn">School</span>
+                    </h2>
+                </div>
+                <form name="userForm" ng-submit="InsertUser(userForm.$valid)" novalidate>
+                    <div class="row">
+                        <div class="col-sm-3 ">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Name:</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control" name="Name" placeholder="Name"
+                                           ng-minlength="3" ng-model="UserName"
+                                           ng-maxlength="10"
+                                           required>
+                                    <p ng-show="userForm.name.$invalid && !userForm.name.$pristine" class="help-block">User name is required.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">City:</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control" name="City" placeholder="City" ng-model="City">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 ">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Age:</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control" name="Age" placeholder="Age" ng-model="Age">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 ">
+                            <div class="col-sm-6 col-lg-4">
+                                <button type="submit" class="btn btn-primary" ng-disabled="userForm.$invalid">Submit</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <h2>Users Information</h2>
+        <table cellpadding="12" class="table table-bordered table-hover">
+            <tr>
+
+                <td>
+                    <b>Name</b>
+                </td>
+                <td>
+                    <b>City</b>
+                </td>
+                <td>
+                    <b>Age</b>
+                </td>
+                <td>
+                    <b>Actions</b>
+                </td>
+            </tr>
+            <tr ng-repeat="user in Users">
+                <td>
+                    {{user.UserName}}
+                </td>
+                <td>
+                    {{user.City}}
+                </td>
+                <td>
+                    {{user.Age}}
+                </td>
+                <td>
+                    <input type="button" class="btn btn-warning" value="Edit" ng-click="EditUser(user)" />
+                    <input type="button" class="btn btn-danger" value="Delete" ng-click="DeleteUser(user)" />
+                </td>
+            </tr>
+        </table>
+
+    </div>
+
+
+</div>
