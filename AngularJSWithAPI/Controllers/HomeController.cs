@@ -8,6 +8,7 @@ namespace AngularJSWithAPI.Controllers
 {
     public class HomeController : Controller
     {
+        //Home Index
         public ActionResult Index()
         {
             return View();
